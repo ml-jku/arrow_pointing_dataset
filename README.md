@@ -5,14 +5,16 @@ A customizable dataset generator for creating images of arrows pointing to circl
 ## Installation
 
 ```bash
+git clone https://github.com/ml-jku/arrow_pointing_dataset
+
 # Basic installation
-pip install arrow_pointing_dataset
+pip install -e './arrow_pointing_dataset'
 
 # With PyTorch support
-pip install arrow_pointing_dataset[torch]
+pip install -e './arrow_pointing_dataset[torch]'
 
 # With TensorFlow support
-pip install arrow_pointing_dataset[tensorflow]
+pip install -e './arrow_pointing_dataset[tensorflow]'
 ```
 
 ## Usage
@@ -93,13 +95,19 @@ config = ArrayPointingConfig(
     image_size=(224, 224),      # Size of output images
     min_radius=15,              # Minimum circle radius
     max_radius=30,              # Maximum circle radius
-    arrow_length=30,            # Length of the arrow
-    arrow_width=3,              # Width of the arrow
+    arrow_length_min=20,        # Length of the arrow
+    arrow_length_max=30,        # Length of the arrow
+    arrow_width_min=3,          # Width of the arrow
+    arrow_width_max=5,          # Width of the arrow
     boundary_padding=30,        # Padding from image boundaries
     n_samples=1000,             # Number of samples to generate
     seed=42                     # Random seed for reproducibility
 )
 ```
+
+## Example image
+
+![](./notebooks/ape.png)
 
 
 ## Contributing
@@ -115,11 +123,19 @@ MIT License
 If you use this dataset in your research, please cite:
 
 ```bibtex
-@misc{arrow_pointing_dataset,
-  author = {Pöppel, Korbinian},
-  title = {Arrow Pointing Dataset},
-  year = {2025},
-  publisher = {GitHub},
-  url = {https://github.com/ml-jku/arrow_pointing_data}
+
+@misc{poppel_plstm_2025,
+	title = {{pLSTM}: parallelizable {Linear} {Source} {Transition} {Mark} networks},
+	shorttitle = {{pLSTM}},
+	url = {http://arxiv.org/abs/2506.11997},
+	doi = {10.48550/arXiv.2506.11997},
+	urldate = {2025-06-16},
+	publisher = {arXiv},
+	author = {Pöppel, Korbinian and Freinschlag, Richard and Schmied, Thomas and Lin, Wei and Hochreiter, Sepp},
+	month = jun,
+	year = {2025},
+	note = {arXiv:2506.11997 [cs]},
+	keywords = {Computer Science - Machine Learning, Statistics - Machine Learning},
 }
+
 ```
