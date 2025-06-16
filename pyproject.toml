@@ -1,0 +1,99 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arrow_pointing_dataset"
+version = "0.1.0"
+description = "Simple Synthetic Dataset of Arrows Pointing to Circles or not"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+    { name = "Korbinian Pöppel", email = "poeppel@ml.jku.at" }
+]
+
+dependencies = [
+    "numpy",
+    "pillow",
+]
+
+[project.optional-dependencies]
+tensorflow = [
+    "tensorflow",
+]
+torch = [
+    "torch>=2.0.0",
+    "torchvision",
+]
+grain = [
+    "grain",
+]
+test = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-sugar>=0.9.7",
+]
+docs = [
+    "sphinx>=7.0.0",
+    "sphinx-rtd-theme>=1.3.0",
+    "sphinx-autodoc-typehints>=1.25.2",
+]
+dev = [
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.5.0",
+    "pylint>=3.0.0",
+]
+
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --cov=arrow_pointing_dataset --cov-report=term-missing"
+testpaths = [
+    "tests",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["arrow_pointing_dataset"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "pass",
+    "raise ImportError",
+]
+ignore_errors = true
+omit = [
+    "tests/*",
+    "setup.py",
+]
+
+[tool.black]
+line-length = 120
+target-version = ["py37"]
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.pylint]
+max-line-length = 120
+disable = [
+    "invalid-name",
+    "too-few-public-methods",
+    "logging-fstring-interpolation",
+    "import-error",  # Disable import errors since we're using the project's environment
+    "too-many-instance-attributes",  # R0902
+    "too-many-arguments",  # R0913
+    "too-many-positional-arguments",  # R0917
+    "too-many-locals",  # R0914
+    "protected-access",  # W0212 - Allow accessing protected members in tests
+]
